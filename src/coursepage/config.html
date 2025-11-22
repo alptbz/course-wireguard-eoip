@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>🔐 WireGuard Config – Download</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body class="bg-light d-flex flex-column min-vh-100">
+    <!-- Header (same basic design) -->
+    <header class="bg-dark text-white py-4 mb-4">
+      <div class="container">
+        <h1 class="display-6 mb-1">🔐 WireGuard Configuration</h1>
+        <p class="mb-0">
+          Download your WireGuard client configuration based on group and member.
+        </p>
+      </div>
+    </header>
+
+    <main class="container mb-5">
+      <section class="mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="h4 card-title mb-3">📦 Config Download</h2>
+            <p class="text-muted">
+              Select your group and member. Once both are selected and a matching config exists,
+              the download button becomes active.
+            </p>
+
+            <form class="row g-3" onsubmit="return false;">
+              <!-- Group select -->
+              <div class="col-md-6">
+                <label for="groupSelect" class="form-label">👥 Group</label>
+                <select id="groupSelect" class="form-select">
+                  <option value="">Select group…</option>
+                  <option value="1">Group 1</option>
+                  <option value="2">Group 2</option>
+                  <option value="3">Group 3</option>
+                  <option value="4">Group 4</option>
+                  <option value="5">Group 5</option>
+                </select>
+              </div>
+
+              <!-- Member select -->
+              <div class="col-md-6">
+                <label for="memberSelect" class="form-label">👤 Member</label>
+                <select id="memberSelect" class="form-select">
+                  <option value="">Select member…</option>
+                  <option value="1">Member 1</option>
+                  <option value="2">Member 2</option>
+                  <option value="3">Member 3</option>
+                  <option value="4">Member 4</option>
+                  <option value="5">Member 5</option>
+                </select>
+              </div>
+
+              <!-- Status text -->
+              <div class="col-12">
+                <p id="configStatus" class="small text-muted mb-1">
+                  No file selected yet.
+                </p>
+                <p id="configFilename" class="small fw-semibold mb-0 d-none">
+                  📄 <span></span>
+                </p>
+              </div>
+
+              <!-- Download button -->
+              <div class="col-12">
+                <button
+                  id="downloadBtn"
+                  type="button"
+                  class="btn btn-primary btn-lg"
+                  disabled
+                >
+                  📥 Download WireGuard config
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer (same style) -->
+    <footer class="mt-auto bg-dark text-white-50 py-3">
+      <div
+        class="container small d-flex flex-column flex-md-row justify-content-between align-items-center"
+      >
+        <span>© 2025 Intro to Systems Programming.</span>
+        <span>
+          📄 Content licensed under
+          <a
+            href="https://creativecommons.org/licenses/by-sa/4.0/"
+            class="text-decoration-none text-info"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            CC BY-SA 4.0
+          </a>
+        </span>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Vanilla JS for mapping and download -->
+    <script>
+      // Mapping: Group N -> teamN
+      function groupToTeam(groupNumber) {
+        if (!groupNumber) return null;
+        return "team" + groupNumber;
+      }
+
+      // Mapping: Member N -> 100 + N
+      function memberToId(memberNumber) {
+        if (!memberNumber) return null;
+        return 100 + parseInt(memberNumber, 10);
+      }
+
+      // All available config files
+      const availableFiles = new Set([
+        "peer-wg-team1-101.conf",
+        "peer-wg-team1-102.conf",
+        "peer-wg-team1-103.conf",
+        "peer-wg-team1-104.conf",
+        "peer-wg-team1-105.conf",
+        "peer-wg-team2-101.conf",
+        "peer-wg-team2-102.conf",
+        "peer-wg-team2-103.conf",
+        "peer-wg-team2-104.conf",
+        "peer-wg-team3-101.conf",
+        "peer-wg-team3-102.conf",
+        "peer-wg-team3-103.conf",
+        "peer-wg-team3-104.conf",
+        "peer-wg-team3-105.conf",
+        "peer-wg-team4-101.conf",
+        "peer-wg-team4-102.conf",
+        "peer-wg-team4-103.conf",
+        "peer-wg-team4-104.conf",
+        "peer-wg-team4-105.conf",
+        "peer-wg-team5-101.conf",
+        "peer-wg-team5-102.conf",
+        "peer-wg-team5-103.conf",
+        "peer-wg-team5-104.conf",
+        "peer-wg-team5-105.conf"
+      ]);
+
+      const groupSelect = document.getElementById("groupSelect");
+      const memberSelect = document.getElementById("memberSelect");
+      const downloadBtn = document.getElementById("downloadBtn");
+      const configStatus = document.getElementById("configStatus");
+      const configFilenameWrapper = document.getElementById("configFilename");
+      const configFilenameSpan = configFilenameWrapper.querySelector("span");
+
+      let currentFilename = null;
+
+      function updateConfigSelection() {
+        const groupValue = groupSelect.value;
+        const memberValue = memberSelect.value;
+
+        if (!groupValue || !memberValue) {
+          currentFilename = null;
+          downloadBtn.disabled = true;
+          configStatus.textContent = "Please select both group and member.";
+          configFilenameWrapper.classList.add("d-none");
+          return;
+        }
+
+        const team = groupToTeam(groupValue);
+        const memberId = memberToId(memberValue);
+        if (!team || !memberId) {
+          currentFilename = null;
+          downloadBtn.disabled = true;
+          configStatus.textContent = "Invalid selection.";
+          configFilenameWrapper.classList.add("d-none");
+          return;
+        }
+
+        const filename = `peer-wg-${team}-${memberId}.conf`;
+
+        if (availableFiles.has(filename)) {
+          currentFilename = filename;
+          downloadBtn.disabled = false;
+          configStatus.textContent = "Config file available:";
+          configFilenameSpan.textContent = filename;
+          configFilenameWrapper.classList.remove("d-none");
+        } else {
+          currentFilename = null;
+          downloadBtn.disabled = true;
+          configStatus.textContent =
+            "No config file available for this group / member combination.";
+          configFilenameWrapper.classList.add("d-none");
+        }
+      }
+
+      groupSelect.addEventListener("change", updateConfigSelection);
+      memberSelect.addEventListener("change", updateConfigSelection);
+
+      downloadBtn.addEventListener("click", function () {
+        if (!currentFilename) return;
+
+        // Assume the .conf files are in the same directory as this page.
+        const link = document.createElement("a");
+        link.href = currentFilename;
+        link.download = currentFilename;
+        link.target = "_blank";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      });
+    </script>
+  </body>
+</html>
