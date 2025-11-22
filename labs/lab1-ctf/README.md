@@ -43,6 +43,9 @@
 
 Your task is to reach the flag before anyone else. You must connect your router to the WiFi, establish the WireGuard tunnel, set up the EoIP tunnel, link your PC or laptop to the remote network, and access the target webserver in your browser.
 
+![Overview](media/Overview.png)
+<br>*Figure 1: Overview of the network.*
+
 # 6. Connect to Teachers Network
 Your course instructor will have a Wi-Fi network for you to connect your router. 
 
@@ -60,25 +63,26 @@ Your course instructor will have a Wi-Fi network for you to connect your router.
 <br/>
 
 ![DHCP-Client](media/dhcpclient.png)
-<br>*Figure 1: DHCP client successfully acquired an IP address from the teacher’s router.
+<br>*Figure 2: DHCP client successfully acquired an IP address from the teacher’s router.*
 
 # 7. WireGuard tunnel
 **💪 Challenge 2:** Set up a WireGuard tunnel to the teacher’s router. A wg-quick configuration file is provided. Extract the interface address, peer public key, endpoint, listen port, and allowed-IPs from this file and configure the tunnel accordingly. The challenge is complete once the teacher’s router responds to ping over the WireGuard link.
 
 ![WG-Quick](media/WireGuardWGQuick.png)
-<br>*Figure 2: DHCP client successfully acquired an IP address from the teacher’s router.
+<br>*Figure 3: DHCP client successfully acquired an IP address from the teacher’s router.*
 
 <details>
 <summary>Hint 1</summary>
-<p>1. Create new WireGuard interface</p>
-<p>2. Create new peer configuration</p>
-<p>3. Add IP adresss</p>
-<p>4. Ping the teachers router over the WireGuard tunnel</p>
+<p>1. Create new WireGuard interface<br/>
+2. Create new peer configuration<br/>
+3. Add IP adresss<br/>
+4. Ping the teachers router over the WireGuard tunnel</p>
 </details>
 <br/>
 
 <details>
 <summary>Hint 2</summary>
+<p>Once the tunnel is configured and the connection is established, the status should look like this:</p>
 <img src="./media/WireGuardHint2.png">
 </details>
 <br/>
