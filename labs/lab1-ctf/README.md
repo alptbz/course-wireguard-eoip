@@ -79,7 +79,7 @@ Your course instructor will have a Wi-Fi network for you to connect your router.
 
 <details>
 <summary>Hint 2</summary>
-![WireGuard Hint 2](./media/WireGuardHint2.png)
+<img src="./media/WireGuardHint2.png">
 </details>
 <br/>
 
