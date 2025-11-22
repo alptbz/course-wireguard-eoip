@@ -1,4 +1,4 @@
-# Lab 1 - Capture The Flag <!-- omit in toc -->
+# Lab 1 - Capture The Flag - Combining WireGuard and EoIP<!-- omit in toc -->
 
 ## Table of contents <!-- omit in toc -->
 - [1. Requirements](#1-requirements)
@@ -75,7 +75,7 @@ Your course instructor will have a Wi-Fi network for you to connect your router.
 <br/>
 
 <details>
-<summary>WireGuard - Hint 2</summary>
+<summary>WireGuard - Soluton Hint</summary>
 <p>Once the tunnel is configured and the connection is established, the status should look like this:</p>
 <img src="./media/WireGuardHint2.png">
 </details>
@@ -102,7 +102,7 @@ Your course instructor will have a Wi-Fi network for you to connect your router.
 <br/>
 
 <details>
-<summary>EoIP - Hint 2</summary>
+<summary>EoIP - Solution Hint</summary>
 <p></p>
 <img src="./media/EoIPHint.png">
 </details>
@@ -117,7 +117,7 @@ Your course instructor will have a Wi-Fi network for you to connect your router.
 **💪 Challenge 4:** Access the remote network’s web interface from your laptop by creating a bridge and adding the EoIP interface as a bridge port. The DHCP client is not needed; remove it or move it to the bridge for verification. The webserver is in the same subnet and ends with `.10`. Connect your laptop to the bridge, reach the webserver, and capture the flag.
 
 <details>
-<summary>Capture The 🏴‍☠️  - Hint 1</summary>
+<summary>Capture The 🏴‍☠️  - Solution Hint</summary>
 <img src="./media/BridgeCaptureTheFlagSolution.png">
 <p>Once you reach the website, just enter your name and grab the flag… assuming no one beat you to it…</p>
 </details>
