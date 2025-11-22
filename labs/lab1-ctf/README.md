@@ -7,8 +7,14 @@
 - [4. Preparation](#4-preparation)
 - [5. Introduction](#5-introduction)
 - [6. Connect to Teachers Network](#6-connect-to-teachers-network)
+  - [Additional Ressources - Wi-Fi](#additional-ressources---wi-fi)
+  - [Additional Ressources - DHCP-Client](#additional-ressources---dhcp-client)
 - [7. WireGuard tunnel](#7-wireguard-tunnel)
-- [EoIP Tunnel](#eoip-tunnel)
+  - [Additional Ressources - WireGuard](#additional-ressources---wireguard)
+- [8. EoIP Tunnel](#8-eoip-tunnel)
+  - [Additional Ressources - EoIP](#additional-ressources---eoip)
+- [9. Capture The 🏴‍☠️](#9-capture-the-️)
+  - [Additional Ressources - Bridge](#additional-ressources---bridge)
 
 # 1. Requirements 
  - Teachers Setup to connect to (usually a WiFi or a Switch to plug in own device)
@@ -65,6 +71,10 @@ Your course instructor will have a Wi-Fi network for you to connect your router.
 ![DHCP-Client](media/dhcpclient.png)
 <br>*Figure 2: DHCP client successfully acquired an IP address from the teacher’s router.*
 
+## Additional Ressources - Wi-Fi
+
+## Additional Ressources - DHCP-Client
+
 # 7. WireGuard tunnel
 **💪 Challenge 2:** Set up a WireGuard tunnel to the teacher’s router. A wg-quick configuration file is provided. Extract the interface address, peer public key, endpoint, listen port, and allowed-IPs from this file and configure the tunnel accordingly. The challenge is complete once the teacher’s router responds to ping over the WireGuard link.
 
@@ -87,4 +97,22 @@ Your course instructor will have a Wi-Fi network for you to connect your router.
 </details>
 <br/>
 
-# EoIP Tunnel
+## Additional Ressources - WireGuard
+
+# 8. EoIP Tunnel
+ Once the WireGuard tunnel is established, both peers have fixed IP addresses within the tunnel and can reach another. This is the requirement to build the EoIP tunnel. 
+
+**💪 Challenge 3:** Configure the EoIP tunnel. This challenge is completed once a IP address was successfully aquired using DHCP over the EoIP tunnel. 
+
+**Important:** Prevent the dhcp client to add a default route or set dns to prevent conflicting configuration. 
+
+## Additional Ressources - EoIP
+
+
+# 9. Capture The 🏴‍☠️ 
+
+**💪 Challenge 4:** Access the Webbrowser in the remote network using your own laptop. For that a bridge must be added, the EoIP interface must be added as port. The dhcp client is not required and can be deleted or moved to the bridge to verify the configuration. The webserver is in the same subnet and has `.10` in the last octet. Use you laptop to access the webserver and capture the flag!
+
+## Additional Ressources - Bridge
+
+
