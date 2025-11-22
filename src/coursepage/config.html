@@ -28,6 +28,7 @@
         </a>
     </div>
 
+
     <main class="container mb-5">
         <section class="mb-4">
             <div class="card">
@@ -171,6 +172,8 @@
 
             const team = groupToTeam(groupValue);
             const memberId = memberToId(memberValue);
+            const eoId = 1000* groupValue + memberId;
+
             if (!team || !memberId) {
                 currentFilename = null;
                 downloadBtn.disabled = true;
@@ -185,7 +188,7 @@
                 currentFilename = filename;
                 downloadBtn.disabled = false;
                 configStatus.textContent = "Config file available:";
-                configFilenameSpan.textContent = filename;
+                configFilenameSpan.textContent = filename + " (EoIP tunnel-id=" + eoId + ")";
                 configFilenameWrapper.classList.remove("d-none");
             } else {
                 currentFilename = null;
