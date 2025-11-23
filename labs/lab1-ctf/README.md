@@ -87,11 +87,13 @@ Your course instructor will have a Wi-Fi network for you to connect your router.
 
 
 ## 7. EoIP Tunnel
- Once the WireGuard tunnel is established, both peers have fixed IP addresses within the tunnel and can reach another. This is the requirement to build the EoIP tunnel. 
+Once the WireGuard tunnel is established, both peers have fixed IP addresses and can reach another directly. This is required to build the EoIP tunnel. 
 
 **💪 Challenge 3:** Configure the EoIP tunnel. This challenge is completed once a IP address was successfully aquired using DHCP over the EoIP tunnel. 
 
-**Important:** Prevent the DHCP client from installing a default route or DNS entries to avoid configuration conflicts.. 
+**Important:**
+ - ⚠ Prevent the DHCP client from installing a default route or DNS entries to avoid configuration conflicts.. 
+ - ⚠ Do net set IPsec secret on EoIP tunnel: The WireGuard tunnel is already encrypted. Double encryption will not improve security and only decrease performance. 
 
 <details>
 <summary>EoIP - Hint 1</summary>
