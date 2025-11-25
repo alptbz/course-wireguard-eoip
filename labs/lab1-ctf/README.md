@@ -5,7 +5,7 @@
 - [2. Learning objectives](#2-learning-objectives)
 - [3. Preparation](#3-preparation)
 - [4. Introduction](#4-introduction)
-- [5. Connect to the Teacher's Network](#5-connect-to-the-teachers-network)
+- [5. Connect to the Instructor's Network](#5-connect-to-the-instructors-network)
   - [5.1. Ressources - Wi-Fi / DCHP](#51-ressources---wi-fi--dchp)
 - [6. WireGuard tunnel](#6-wireguard-tunnel)
   - [6.1. Ressources - WireGuard](#61-ressources---wireguard)
@@ -16,7 +16,7 @@
 - [9. License](#9-license)
 
 ## 1. Requirements 
- - Teacher's Lab Setup to connect to (usually a WiFi or a Switch to plug in own device)
+ - Course Instructor's Lab Setup to connect to (usually a WiFi or a Switch to plug in own device)
  - [MikroTik hAP ac lite](https://mikrotik.com/product/RB952Ui-5ac2nD) or similar device
 
 ## 2. Learning objectives
@@ -36,13 +36,13 @@ Your task is to **reach the flag** before anyone else. To win, connect your rout
 ![Overview](media/Overview.png)
 <br>*Figure 1: Overview of the network.*
 
-## 5. Connect to the Teacher's Network
+## 5. Connect to the Instructor's Network
 Your course instructor will have a Wi-Fi network for you to connect your router. 
 
 **💪 Challenge 1:** Connect your Router to the Wi-Fi network provieded by the course instructor. *Typically the SSID is `Capture The 🏴‍☠️`*
 
 <details>
-<summary>Connect to the Teacher's Network - Solution</summary>
+<summary>Connect to the Instructor's Network - Solution</summary>
 <p>Adjust SSID and pre-shared-key accordingly</p>
 <pre>
 /interface/wireless/security-profiles/add name=CTF authentication-types=wpa2-psk wpa2-pre-shared-key=1234 mode=dynamic-keys
@@ -53,24 +53,24 @@ Your course instructor will have a Wi-Fi network for you to connect your router.
 <br/>
 
 ![DHCP-Client](media/dhcpclient.png)
-<br>*Figure 2: DHCP client successfully acquired an IP address from the teacher’s router.*
+<br>*Figure 2: DHCP client successfully acquired an IP address from the instructor's router.*
 
 ### 5.1. Ressources - Wi-Fi / DCHP
  - 📕 [MikroTik Help - Wi-Fi](https://help.mikrotik.com/docs/spaces/ROS/pages/224559120/WiFi)
  - 📕 [MikroTik Help - DHCP](https://help.mikrotik.com/docs/spaces/ROS/pages/24805500/DHCP)
 
 ## 6. WireGuard tunnel
-**💪 Challenge 2:** Set up a WireGuard tunnel to the teacher’s router. A wg-quick configuration file is provided. Extract the interface address, peer public key, endpoint, listen port, and allowed-IPs from this file and configure the tunnel accordingly. The challenge is complete once the teacher’s router responds to ping over the WireGuard link.
+**💪 Challenge 2:** Set up a WireGuard tunnel to the instructor's router. A wg-quick configuration file is provided. Extract the interface address, peer public key, endpoint, listen port, and allowed-IPs from this file and configure the tunnel accordingly. The challenge is complete once the instructor's router responds to ping over the WireGuard link.
 
 ![WG-Quick](media/WireGuardWGQuick.png)
-<br>*Figure 3: DHCP client successfully acquired an IP address from the teacher’s router.*
+<br>*Figure 3: DHCP client successfully acquired an IP address from the instructor's router.*
 
 <details>
 <summary>WireGuard - Hint 1</summary>
 <p>1. Create new WireGuard interface<br/>
 2. Create new peer configuration<br/>
 3. Add IP adresss<br/>
-4. Ping the teachers router over the WireGuard tunnel</p>
+4. Ping the instructor's router over the WireGuard tunnel</p>
 </details>
 <br/>
 
