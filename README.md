@@ -1,5 +1,5 @@
 # WireGuard EoIP Course
-*Secure Layer 2 Bridges Using WireGuard and EoIP*
+*Simple Layer 2 tunnels using WireGuard and EoIP*
 
 ## Labs
  - [Lab 1 - Capture The Flag - Combining WireGuard and EoIP](./labs/lab1-ctf/)
