@@ -1,13 +1,13 @@
 # Lab 2 - Build a tunnel to your neighbor <!-- omit in toc -->
 
 ## Table of contents <!-- omit in toc -->
-- [1. Uplink](#1-uplink)
-- [2. DNS](#2-dns)
-- [3. input](#3-input)
-- [4. forward](#4-forward)
-  - [5. WireGuard](#5-wireguard)
-  - [6. EoIP](#6-eoip)
-
+- [1. Requirements](#1-requirements)
+- [2. Learning objectives](#2-learning-objectives)
+- [3. Preparation](#3-preparation)
+- [4. Overview](#4-overview)
+- [5. Basic setup - Uplink \& Local network](#5-basic-setup---uplink--local-network)
+- [6. WireGuard](#6-wireguard)
+- [7. EoIP](#7-eoip)
 
 ## 1. Requirements 
  - [MikroTik hAP ac lite](https://mikrotik.com/product/RB952Ui-5ac2nD) or similar device for every student (=peer)
@@ -22,7 +22,11 @@
  - Reset your device with no default configuration `/system/reset-configuration no-defaults=yes skip-backup=yes`
  - Build a team of 2 or more people. (Solo: Have two RouterOS devices available)
 
-## 4. Basic setup - Uplink & Local network
+## 4. Overview
+
+![Network](./media/topology.PNG)
+
+## 5. Basic setup - Uplink & Local network
 
 **💪 Challenge 1:** Coordinate with your teammate and define which IP addresses you want to use for your networks. To make the configuration simpler only use /24 networks. Define one local LAN for every peer, one network for WireGuard and one network between each peer. 
 
@@ -56,10 +60,8 @@ add bridge=bridge interface=ether3
 add bridge=bridge interface=ether4
 /ip address
 add address=192.168.5.1/24 interface=bridge
-# 1. Uplink 
 /ip dhcp-client
 add interface=ether1 use-peer-dns=yes add-default-route=yes disabled=no
-# 2. DNS
 /ip dns
 set allow-remote-requests=yes
 /ip pool
@@ -69,13 +71,11 @@ add name=dhcp-lan interface=bridge-lan address-pool=pool-lan lease-time=1d disab
 /ip dhcp-server network
 add address=192.168.5.0/24 gateway=192.168.5.1 dns-server=192.168.5.1
 /ip firewall filter
-# 3. input
 add chain=input action=accept connection-state=established,related comment="INPUT: allow established, related"
 add action=accept chain=input icmp-options=8:0-255 protocol=icmp
 add chain=input action=drop connection-state=invalid comment="INPUT: drop invalid"
 add chain=input action=accept in-interface=bridge-lan comment="INPUT: allow LAN to router"
 add chain=input action=drop in-interface=ether1 comment="INPUT: drop everything from WAN"
-# 4. forward
 /ip firewall filter
 add action=fasttrack-connection chain=forward comment="forward: accept established, related" connection-state=established,related
 add chain=forward action=accept connection-state=established,related comment="FORWARD: allow established, related"
@@ -88,7 +88,7 @@ add chain=srcnat out-interface=ether1 action=masquerade
 </details>
 <br/>
 
-## 5. WireGuard 
+## 6. WireGuard 
 
 **💪 Challenge 3:** On every peer: Configure WireGuard a interface and exchange the public key with the other peer. Configure the WireGuard peer and exchange the preshared key. The challenge is completed when both peer can ping each other over the WireGuard tunnel. 
 
@@ -110,7 +110,7 @@ add chain=srcnat out-interface=ether1 action=masquerade
 </details>
 <br/>
 
-## 6. EoIP
+## 7. EoIP
 
 **💪 Challenge 4:** Configure the two EoIP interface on both peers: One to bridge the local network to the remote peer and one to "receive" the remote LAN. (Make sure that the EoIP tunnel uses goes through the WireGuard.  We do not need double encryption: Do not set IPsec-secret). Bridge one EoIP interface to your local LAN and the other to a free physical port. The challenge is completed when you can access the internet through the others LAN over the EoIP tunnel. 
 
