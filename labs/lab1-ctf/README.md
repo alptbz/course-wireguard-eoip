@@ -31,7 +31,7 @@
 ## 4. Introduction
 ![Flag](./media/flag.png)
 
-Your task is to reach the flag before anyone else. You must connect your router to the WiFi, establish the WireGuard tunnel, set up the EoIP tunnel, link your PC or laptop to the remote network, and access the target webserver in your browser.
+Your task is to **reach the flag** before anyone else. To win, connect your router to WiFi, establish the WireGuard tunnel, set up the EoIP tunnel, connect your PC or laptop to the remote network, and open the target webserver in your browser. 
 
 ![Overview](media/Overview.png)
 <br>*Figure 1: Overview of the network.*
