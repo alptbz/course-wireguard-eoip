@@ -1,7 +1,9 @@
 # WireGuard EoIP Course
-**Secure Layer 2 Bridges Using WireGuard and EoIP**
+*Secure Layer 2 Bridges Using WireGuard and EoIP*
 
-
+## Labs
+ - [Lab 1 - Capture The Flag - Combining WireGuard and EoIP](./labs/lab1-ctf/)
+ - [Lab 2 - Build a tunnel to your neighbor](./labs/lab2/)
 
 ## Ressources
  - 📕 [MikroTik Help - Wi-Fi](https://help.mikrotik.com/docs/spaces/ROS/pages/224559120/WiFi)
