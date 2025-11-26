@@ -2,7 +2,7 @@
 *Simple Layer 2 tunnels using WireGuard and EoIP*
 
 ## Labs
- - [Lab 1 - Capture The Flag - Combining WireGuard and EoIP](./labs/lab1-ctf/)
+ - [Lab 1 - Build a tunnel to visit a website - Combining WireGuard and EoIP](./labs/lab1/)
  - [Lab 2 - Build a tunnel to your neighbor](./labs/lab2/)
 
 ## Ressources

@@ -1,4 +1,4 @@
-# Lab 1 - Capture The Flag - Combining WireGuard and EoIP<!-- omit in toc -->
+# Lab 1 - Build a tunnel to visit a website - Combining WireGuard and EoIP<!-- omit in toc -->
 
 ## Table of contents <!-- omit in toc -->
 - [1. Requirements](#1-requirements)
@@ -11,7 +11,7 @@
   - [6.1. Ressources - WireGuard](#61-ressources---wireguard)
 - [7. EoIP Tunnel](#7-eoip-tunnel)
   - [7.1. Ressources - EoIP](#71-ressources---eoip)
-- [8. Capture The 🏴‍☠️](#8-capture-the-️)
+- [8. Visit the website and claim your prize](#8-visit-the-website-and-claim-your-prize)
   - [8.1. Ressources](#81-ressources)
 - [9. License](#9-license)
 
@@ -31,9 +31,7 @@
  - **Tip:** If you cannot connect to your router after no default configuration: Set a IP and Mask on your Laptops/PCs interface (e.g. 192.168.88.5/24)
 
 ## 4. Introduction
-![Flag](./media/flag.png)
-
-Your task is to **reach the flag** before anyone else. To win, connect your router to WiFi, establish the WireGuard tunnel, set up the EoIP tunnel, connect your PC or laptop to the remote network, and open the target webserver in your browser. 
+Your task is to build a tunnel to visit a website. You know that you completed the task, when your name shows up on the instructors screen. To accomplish this, connect your router to WiFi, establish the WireGuard tunnel, set up the EoIP tunnel, connect your PC or laptop to the remote network, and open the target webserver in your browser. 
 
 ![Overview](media/Overview.png)
 <br>*Figure 1: Overview of the network.*
@@ -41,14 +39,14 @@ Your task is to **reach the flag** before anyone else. To win, connect your rout
 ## 5. Connect to the Instructor's Network
 Your course instructor will have a Wi-Fi network for you to connect your router. 
 
-**💪 Challenge 1:** Connect your Router to the Wi-Fi network provieded by the course instructor. *Typically the SSID is `Capture The 🏴‍☠️`*
+**💪 Challenge 1:** Connect your Router to the Wi-Fi network provided by the course instructor. *Typically the SSID is `WireGuardEoIP`*
 
 <details>
 <summary>Connect to the Instructor's Network - Solution</summary>
 <p>Adjust SSID and pre-shared-key accordingly</p>
 <pre>
-/interface/wireless/security-profiles/add name=CTF authentication-types=wpa2-psk wpa2-pre-shared-key=1234 mode=dynamic-keys
-/interface wireless set [ find default-name=wlan2 ] ssid="Capture The \F0\9F\8F\B4\E2\80\8D\E2\98\A0\EF\B8\8F" band=5ghz-n/ac frequency=auto mode=ap-bridge  wps-mode=disabled security-profile=CTF disabled=no
+/interface/wireless/security-profiles/add name=WireGuardEoIP authentication-types=wpa2-psk wpa2-pre-shared-key=1234 mode=dynamic-keys
+/interface wireless set [ find default-name=wlan2 ] ssid="WireGuardEoIP" band=5ghz-n/ac frequency=auto mode=ap-bridge  wps-mode=disabled security-profile=WireGuardEoIP disabled=no
 /ip dhcp-client add interface=wlan2
 </pre>
 </details>
@@ -64,6 +62,8 @@ Your course instructor will have a Wi-Fi network for you to connect your router.
 ## 6. WireGuard tunnel
 **💪 Challenge 2:** Set up a WireGuard tunnel to the instructor's router. A wg-quick configuration file is provided. Extract the interface address, peer public key, endpoint, listen port, and allowed-IPs from this file and configure the tunnel accordingly. The challenge is complete once the instructor's router responds to ping over the WireGuard link.
 
+*Tip:* If your tunnel is not coming up and you are made sure the configuration is correct: Reboot your Router. 
+
 ![WG-Quick](media/WireGuardWGQuick.png)
 <br>*Figure 3: DHCP client successfully acquired an IP address from the instructor's router.*
 
@@ -75,6 +75,16 @@ Your course instructor will have a Wi-Fi network for you to connect your router.
 4. Ping the instructor's router over the WireGuard tunnel</p>
 </details>
 <br/>
+
+<details>
+<summary>WireGuard - Hint 2</summary>
+<p>1. Check if your private key in the <i>WireGuard Interface</i> is equal to the private key in the conf-file.<br/>
+2. Check if your public key, preshared key, allowed address, endpoint and endpoint port in the <i>WireGuard Peer</i> is equal to the public key in the conf-file.<br/>
+3. Make sure 
+</p>
+</details>
+<br/>
+
 
 <details>
 <summary>WireGuard - Soluton Hint</summary>
@@ -116,14 +126,13 @@ Once the WireGuard tunnel is established, both peers have fixed IP addresses and
 ### 7.1. Ressources - EoIP
  - 📕 [MikroTik Help - EoIP](https://help.mikrotik.com/docs/spaces/ROS/pages/24805521/EoIP)
 
-## 8. Capture The 🏴‍☠️ 
+## 8. Visit the website and claim your prize 
 
-**💪 Challenge 4:** Access the remote network’s web interface from your laptop by creating a bridge and adding the EoIP interface as a bridge port. The DHCP client is not needed; remove it or move it to the bridge for verification. The webserver is in the same subnet and ends with `.10`. Connect your laptop to the bridge, reach the webserver, and capture the flag.
+**💪 Challenge 4:** Access the remote network’s web interface from your laptop by creating a bridge and adding the EoIP interface as a bridge port. The DHCP client is not needed; remove it or move it to the bridge for verification. The webserver is in the same subnet and ends with `.10`. Connect your laptop to the bridge, open the website on your browser, and claim your prize. 
 
 <details>
-<summary>Capture The 🏴‍☠️  - Solution Hint</summary>
-<img src="./media/BridgeCaptureTheFlagSolution.png">
-<p>Once you reach the website, just enter your name and grab the flag… assuming no one beat you to it…</p>
+<summary>Solution Hint</summary>
+<p>Once you reach the website, just enter your name and grab your well earned gift.</p>
 </details>
 <br/>
 
