@@ -27,6 +27,7 @@
 ## 3. Preparation
  - Update your device to the newest RouterOS 7.x (2025-11-21, 7.20.x)
  - Reset your device with no default configuration `/system/reset-configuration no-defaults=yes skip-backup=yes`
+ - **Tip:** If you cannot connect to your router after no default configuration: Set a IP and Mask on your Laptops/PCs interface (e.g. 192.168.88.5/24)
 
 ## 4. Introduction
 ![Flag](./media/flag.png)
