@@ -28,6 +28,7 @@
  - Update your device to the newest RouterOS 7.x (2025-11-21, 7.20.x)
  - Reset your device with no default configuration `/system/reset-configuration no-defaults=yes skip-backup=yes`
  - Access your Router using it's MAC address
+ - Make sure to set the Routers identity **to your name**. You can do that in the UI `System -> Identity` or using this command: `/system/identity/set name=MyName"
  - **Tip:** If you cannot connect to your router after no default configuration: Set a IP and Mask on your Laptops/PCs interface (e.g. 192.168.88.5/24)
 
 ## 4. Introduction
@@ -43,9 +44,9 @@ Your course instructor will have a Wi-Fi network for you to connect your router.
 
 <details>
 <summary>Connect to the Instructor's Network - Solution</summary>
-<p>Adjust SSID and pre-shared-key accordingly</p>
+<p><b>Adjust SSID and pre-shared-key accordingly</b></p>
 <pre>
-/interface/wireless/security-profiles/add name=WireGuardEoIP authentication-types=wpa2-psk wpa2-pre-shared-key=1234 mode=dynamic-keys
+/interface/wireless/security-profiles/add name=WireGuardEoIP authentication-types=wpa2-psk wpa2-pre-shared-key=WireGuardEoIP mode=dynamic-keys
 /interface wireless set [ find default-name=wlan2 ] ssid="WireGuardEoIP" band=5ghz-n/ac frequency=auto mode=ap-bridge  wps-mode=disabled security-profile=WireGuardEoIP disabled=no
 /ip dhcp-client add interface=wlan2
 </pre>
