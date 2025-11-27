@@ -39,9 +39,9 @@ Your task is to build a tunnel to visit a website. You know that you completed t
 <br>*Figure 1: Overview of the network.*
 
 ## 5. Connect to the Instructor's Network
-Your course instructor will have a Wi-Fi network for you to connect your router. 
+Your course instructor will have a Wi-Fi network ready for you to connect your router to. 
 
-**💪 Challenge 1:** Connect your Router to the Wi-Fi network provided by the course instructor. *Typically the SSID is `WireGuardEoIP`*
+**💪 Challenge 1:** Connect your Router to the Wi-Fi network provided by the course instructor. *Typically the SSID is `WireGuardEoIP`*. You know that you completed this challenge when you are able to ping the Router on `192.168.99.1` and a target in the public internet (e.g. `9.9.9.9` or `8.8.8.8`)
 
 <details>
 <summary>Connect to the Instructor's Network - Solution</summary>
