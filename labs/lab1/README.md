@@ -13,7 +13,8 @@
   - [7.1. Ressources - EoIP](#71-ressources---eoip)
 - [8. Visit the website and claim your prize](#8-visit-the-website-and-claim-your-prize)
   - [8.1. Ressources](#81-ressources)
-- [9. License](#9-license)
+- [9. Troubleshooting](#9-troubleshooting)
+- [10. License](#10-license)
 
 ## 1. Requirements 
  - Course Instructor's Lab Setup to connect to (usually a WiFi or a Switch to plug in own device)
@@ -148,5 +149,14 @@ Once the WireGuard tunnel is established, both peers have fixed IP addresses and
 ### 8.1. Ressources
  - 📕 [MikroTik Help - Bridging and Switching](https://help.mikrotik.com/docs/spaces/ROS/pages/328068/Bridging+and+Switching)
 
-## 9. License
+## 9. Troubleshooting
+Use the following question to troubleshoot in case you cannot reach the website:
+ - Can I ping the instructors router `192.168.99.1` from my router? <br/>=> if not check: Check you are connected to the WiFi and are receiving an IP address. 
+ - Can I ping a host in the Internet (e.g. `8.8.8.8` or `9.9.9.9`) from my router?<br/> => if not check your routing table. 
+ - Can I ping through the WireGuard Tunnel (`10.166.X.1`)? <br/> Check your WireGuard Tunnel: <br/>Make sure you have persistent keep-alive configured (25 seconds recommended). This is not required but simplifies debugging. <br/>Check if you have RX and TX bytes increasing in WireGuard Peer (`/interface/wireguard/peer`)? <br/> Check if you have the correct IP address configured for the WireGuard interface.
+ - Is my EoIP tunnel in state `running`? <br/> If not: <br/> Check your tunnel-id and remote-address.
+ - Do you receive an IP on your PC from the remote network? <br/> If not: Check if you created a bridge and added a local port and the EoIP interface to it.<br/> Check if your PC is connected to the correct port on your router. 
+ - Can you reach the WebServer? <br/> Check if you are using the correct IP address for the webserver. The IP address has to be constructed using the information from your DHCP client and the hint in the topology image. 
+
+## 10. License
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a> and [GNU GENERAL PUBLIC LICENSE version 3](https://www.gnu.org/licenses/gpl-3.0.en.html). If there are any contradictions between the two licenses, the Attribution-NonCommercial-ShareAlike 4.0 International license govern
