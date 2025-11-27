@@ -45,7 +45,7 @@ Your course instructor will have a Wi-Fi network for you to connect your router.
 
 <details>
 <summary>Connect to the Instructor's Network - Solution</summary>
-<p><b>Adjust SSID and pre-shared-key accordingly</b></p>
+<p><b>Adjust SSID and pre-shared-key accordingly if necessary</b></p>
 <pre>
 /interface/wireless/security-profiles/add name=WireGuardEoIP authentication-types=wpa2-psk wpa2-pre-shared-key=WireGuardEoIP mode=dynamic-keys
 /interface wireless set [ find default-name=wlan2 ] ssid="WireGuardEoIP" band=5ghz-n/ac frequency=auto mode=ap-bridge  wps-mode=disabled security-profile=WireGuardEoIP disabled=no
@@ -71,10 +71,11 @@ Your course instructor will have a Wi-Fi network for you to connect your router.
 
 <details>
 <summary>WireGuard - Hint 1</summary>
+<img src="./media/WGQuickToWinBox.png" />
 <p>1. Create new WireGuard interface<br/>
-2. Create new peer configuration<br/>
-3. Add IP adresss<br/>
-4. Ping the instructor's router over the WireGuard tunnel</p>
+1. Create new peer configuration<br/>
+2. Add IP adresss<br/>
+3. Ping the instructor's router over the WireGuard tunnel</p>
 </details>
 <br/>
 
@@ -82,7 +83,6 @@ Your course instructor will have a Wi-Fi network for you to connect your router.
 <summary>WireGuard - Hint 2</summary>
 <p>1. Check if your private key in the <i>WireGuard Interface</i> is equal to the private key in the conf-file.<br/>
 2. Check if your public key, preshared key, allowed address, endpoint and endpoint port in the <i>WireGuard Peer</i> is equal to the public key in the conf-file.<br/>
-3. Make sure 
 </p>
 </details>
 <br/>
