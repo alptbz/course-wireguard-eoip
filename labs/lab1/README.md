@@ -30,6 +30,7 @@
  - Access your Router using it's MAC address
  - Make sure to set the Routers identity **to your name**. You can do that in the UI `System -> Identity` or using this command: `/system/identity/set name=MyName"
  - **Tip:** If you cannot connect to your router after no default configuration: Set a IP and Mask on your Laptops/PCs interface (e.g. 192.168.88.5/24)
+ - Connect your PC to `ether1` on your Router
 
 ## 4. Introduction
 Your task is to build a tunnel to visit a website. You know that you completed the task, when your name shows up on the instructors screen. To accomplish this, connect your router to WiFi, establish the WireGuard tunnel, set up the EoIP tunnel, connect your PC or laptop to the remote network, and open the target webserver in your browser. 
@@ -102,7 +103,7 @@ Your course instructor will have a Wi-Fi network for you to connect your router.
 ## 7. EoIP Tunnel
 Once the WireGuard tunnel is established, both peers have fixed IP addresses and can reach another directly. This is required to build the EoIP tunnel. 
 
-**💪 Challenge 3:** Configure the EoIP tunnel. This challenge is completed once a IP address was successfully aquired using DHCP over the EoIP tunnel. 
+**💪 Challenge 3:** Configure the EoIP tunnel. This challenge is completed once a IP address was successfully acquired using DHCP over the EoIP tunnel. 
 
 **Important:**
  - ⚠ Prevent the DHCP client from installing a default route or DNS entries to avoid configuration conflicts.. 
@@ -131,9 +132,16 @@ Once the WireGuard tunnel is established, both peers have fixed IP addresses and
 
 **💪 Challenge 4:** Access the remote network’s web interface from your laptop by creating a bridge and adding the EoIP interface as a bridge port. The DHCP client is not needed; remove it or move it to the bridge for verification. The webserver is in the same subnet and ends with `.10`. Connect your laptop to the bridge, open the website on your browser, and claim your prize. 
 
+**Once you reach the website, just enter your name and grab your well earned gift.**
+
 <details>
 <summary>Solution Hint</summary>
-<p>Once you reach the website, just enter your name and grab your well earned gift.</p>
+<p>1. Create a bridge</br>
+2. Select an interface <b>other</b> then the one your PC is connected to, e.g. `ether5`</br>
+3. Bridge that selected interface and the EoIP-Interface to the newly created bridge</br>
+4. Connect your PC to that selected interface. You should get an IP address from the remote network.</br>
+5. Get the first three octets from the IP address. The webserver can be found on ".10" (e.g. your IP is 10.50.50.250 then the webserver is 10.50.50.10 )</br>
+</p>
 </details>
 <br/>
 
