@@ -8,6 +8,7 @@
 - [5. Basic setup - Uplink \& Local network](#5-basic-setup---uplink--local-network)
 - [6. WireGuard](#6-wireguard)
 - [7. EoIP](#7-eoip)
+- [8. Troubleshooting](#8-troubleshooting)
 
 ## 1. Requirements 
  - [MikroTik hAP ac lite](https://mikrotik.com/product/RB952Ui-5ac2nD) or similar device for every student (=peer)
@@ -46,7 +47,7 @@ WireGuard Network: 192.168.200.0/24
 </details>
 <br/>
 
-**💪 Challenge 2:** On every peer: Make sure you have an uplink to the internet. Then configure a simple /24 local subnet on a bridge with DHCP server. Add all required firewall and NAT rules. Allow remote requests to your DNS. Make sure to allow ICMP in the firewall. Peer to peer reachability: Define one physical port that is not part of the local LAN and set a static IP address. Configure the defined IP addresses. 
+**💪 Challenge 2:** On every peer: Make sure you have an uplink to the internet (via WiFi or Ethernet). Then configure a simple /24 local subnet on a bridge with DHCP server. Add all required NAT rules. Allow remote requests to your DNS. Make sure to allow ICMP in the firewall. Peer to peer reachability: Define one physical port that is not part of the local LAN and set a static IP address. Configure the defined IP addresses. 
 
 <details>
 <summary>Solution: Network configuration</summary>
@@ -70,18 +71,6 @@ add name=pool-lan ranges=192.168.5.100-192.168.5.199
 add name=dhcp-lan interface=bridge-lan address-pool=pool-lan lease-time=1d disabled=no
 /ip dhcp-server network
 add address=192.168.5.0/24 gateway=192.168.5.1 dns-server=192.168.5.1
-/ip firewall filter
-add chain=input action=accept connection-state=established,related comment="INPUT: allow established, related"
-add action=accept chain=input icmp-options=8:0-255 protocol=icmp
-add chain=input action=drop connection-state=invalid comment="INPUT: drop invalid"
-add chain=input action=accept in-interface=bridge-lan comment="INPUT: allow LAN to router"
-add chain=input action=drop in-interface=ether1 comment="INPUT: drop everything from WAN"
-/ip firewall filter
-add action=fasttrack-connection chain=forward comment="forward: accept established, related" connection-state=established,related
-add chain=forward action=accept connection-state=established,related comment="FORWARD: allow established, related"
-add chain=forward action=drop connection-state=invalid comment="FORWARD: drop invalid"
-add chain=forward action=accept in-interface=bridge-lan out-interface=ether1 comment="FORWARD: LAN -> WAN"
-add chain=forward action=drop in-interface=ether1 out-interface=bridge-lan comment="FORWARD: block WAN -> LAN"
 /ip firewall nat
 add chain=srcnat out-interface=ether1 action=masquerade 
 </pre>
@@ -121,3 +110,10 @@ add chain=srcnat out-interface=ether1 action=masquerade
 </details>
 <br/>
 
+## 8. Troubleshooting
+Verify the following things:
+ - Can the router ping the internet?
+ - Can the router ping the other router?
+ - Not a requirement but helpful: Do both students have different subnet ranges in their subnets?
+ - Is the WireGuard tunnel actually up? <br/> If a persistent keep-alive is configured you can verify that by looking at your increasing TX and RX and by being able to ping the other peer over the tunnel.
+ - Is the EoIP tunnel running?
