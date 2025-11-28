@@ -26,7 +26,7 @@
  - Combine WireGuard and EoIP
 
 ## 3. Preparation
- - Update your device to the newest RouterOS 7.x (2025-11-21, 7.20.x)
+ - Update your device to the newest RouterOS 7.x (2025-11-21, 7.20.x) (need help? MikroTik Help on [Upgrading and Installation](https://help.mikrotik.com/docs/spaces/ROS/pages/328142/Upgrading+and+installation))
  - Reset your device with no default configuration `/system/reset-configuration no-defaults=yes skip-backup=yes`
  - Access your Router using it's MAC address
  - Make sure to set the Routers identity **to your name**. You can do that in the UI `System -> Identity` or using this command: `/system/identity/set name=MyName"
